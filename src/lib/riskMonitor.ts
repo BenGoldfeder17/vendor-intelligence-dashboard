@@ -15,14 +15,9 @@
 // Anything not sourceable is reported as a blocker, not faked.
 
 import { query, feedsTable, bigQueryEnabled } from "./bigquery";
-import {
-  thresholds,
-  suppressionCodes,
-  warehouse,
-  contractFor,
-  hasPerCodeContracts,
-  totalAllowancePct,
-} from "@/config/app.config";
+import { thresholds, suppressionCodes, warehouse, totalAllowancePct } from "@/config/app.config";
+// Contracts come from the runtime store (editable in the UI), not deploy config.
+import { resolveContract as contractFor, hasContracts as hasPerCodeContracts } from "./contracts";
 
 /** Revenue-weighted Net PPM floor — set via NET_PPM_FLOOR in .env. */
 export const NET_PPM_FLOOR = thresholds.netPpmFloor;

@@ -2319,3 +2319,30 @@ ul.bullets li {
 
 /* widen the nav sync pct chip to fit the ETA text */
 .nav-sync-pct { min-width: max-content; }
+
+/* ── Contract editor ── */
+.ce-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.ce-source { text-align: right; }
+.ce-badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.ce-badge.storage { background: #eff8f4; color: var(--green); }
+.ce-badge.environment { background: #fdf6e3; color: var(--amber); }
+.ce-badge.none { background: var(--panel-2); color: var(--muted); }
+.ce-warn { padding: 12px 14px; border-radius: var(--radius); background: #fdf6e3; border: 1px solid var(--amber); font-size: 13px; margin-bottom: 16px; line-height: 1.6; }
+.ce-msg { padding: 11px 14px; border-radius: var(--radius); font-size: 13px; margin-bottom: 16px; }
+.ce-msg.ok { background: #eff8f4; border: 1px solid var(--green); color: var(--green); }
+.ce-msg.bad { background: #fdf1ef; border: 1px solid var(--red); color: var(--red); }
+.ce-msg ul { margin: 8px 0 0; padding-left: 18px; line-height: 1.7; }
+.ce-table-wrap { overflow-x: auto; }
+.ce-table { width: 100%; border-collapse: collapse; }
+.ce-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding: 10px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.ce-table td { padding: 6px 8px; border-bottom: 0.5px solid var(--border-light); }
+.ce-input { border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; font: inherit; font-size: 13px; background: var(--panel); color: var(--text); }
+.ce-input:focus { outline: none; border-color: var(--accent); }
+.ce-code { width: 110px; font-weight: 600; letter-spacing: 0.02em; }
+.ce-num { width: 72px; text-align: right; font-variant-numeric: tabular-nums; }
+.ce-pct { font-size: 12px; color: var(--muted); margin-left: 3px; }
+.ce-remove { border: 0; background: none; color: var(--muted); font-size: 14px; cursor: pointer; padding: 4px 6px; }
+.ce-remove:hover { color: var(--red); }
+.ce-actions { display: flex; gap: 10px; margin-top: 16px; }
+.ce-foot { margin-top: 14px; line-height: 1.6; }
+.ce-foot code { background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 3px; }

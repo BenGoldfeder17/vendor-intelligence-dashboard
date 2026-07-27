@@ -25,9 +25,14 @@ secret manager. Real environment variables always take precedence over
 The authoritative list is `SECRET_KEYS` in `src/config/app.config.ts`.
 `npm run validate` **fails** if any of them has a value in `env.yaml`.
 
-Note that `VENDOR_CONTRACTS` is on the secret list despite not being a
-credential. Negotiated margin floors and allowance percentages are commercially
-confidential — in practice the most sensitive values in this project.
+`VENDOR_CONTRACTS` is on the secret list, but the better answer is not to put it
+in a file at all: **contracts are entered through the UI** (Revenue risk →
+Contracts) and stored with the app's data, behind whatever auth fronts the app.
+
+That is the right shape because contracts are *data*, not configuration — they
+change when terms are renegotiated, they get reviewed and corrected, and the
+person who knows them may not be the person who deploys. The env var remains as a
+bootstrap path; storage wins when both are present.
 
 Once the secrets are out, **`env.yaml` contains nothing worth hiding.** You can
 hand it to an agent, paste it in a ticket, or commit it if you wanted to.

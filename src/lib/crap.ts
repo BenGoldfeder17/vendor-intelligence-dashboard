@@ -27,7 +27,8 @@
 import type { Aggregate, SalesPoint } from "./types";
 import type { ReferenceData } from "./reference";
 import { cancelCodes } from "./reference";
-import { thresholds, identity, contractFor, totalAllowancePct } from "@/config/app.config";
+import { thresholds, identity, totalAllowancePct } from "@/config/app.config";
+import { resolveContract as contractFor } from "./contracts";
 
 /** Amazon's healthy Net PPM benchmarks: softlines >35%, hardlines >40%. */
 export const DEFAULT_BENCHMARK = thresholds.marginBenchmark;

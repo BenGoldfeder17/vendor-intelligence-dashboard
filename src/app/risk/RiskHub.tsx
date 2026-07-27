@@ -3,6 +3,7 @@ import DomainHub from "@/components/DomainHub";
 import RiskMonitor from "@/components/RiskMonitor";
 import MarginWatch from "@/components/MarginWatch";
 import PoCombined from "@/components/PoCombined";
+import ContractEditor from "@/components/ContractEditor";
 export default function RiskHub() {
   return (
     <DomainHub
@@ -14,6 +15,8 @@ export default function RiskHub() {
           render: () => <MarginWatch /> },
         { id: "confirmation", label: "PO & confirmation", icon: "ti-file-check",
           render: () => <PoCombined initialView="confirmation" /> },
+        { id: "contracts", label: "Contracts", icon: "ti-file-text",
+          render: () => <ContractEditor /> },
       ]}
     />
   );

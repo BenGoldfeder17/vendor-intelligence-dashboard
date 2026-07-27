@@ -11,12 +11,15 @@ import {
   styleRevenueFromMap,
 } from "@/lib/riskMonitor";
 import { bigQueryEnabled } from "@/lib/bigquery";
+import { refreshContracts } from "@/lib/contracts";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /** GET /api/risk — Panels 1-6. All reads. */
 export async function GET() {
+  // Load vendor contracts before any margin computation.
+  await refreshContracts();
   const ara = await readAraNetPpm();
   const agg = await readAggregate();
 

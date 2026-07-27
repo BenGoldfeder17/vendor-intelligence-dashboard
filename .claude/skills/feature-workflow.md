@@ -5,7 +5,10 @@
 3. **`build-release`** — does it compile and package? Any new dependency traced?
 4. **`security-auditor`** — only if it touches secrets, writes, or exposure.
 5. **`verification`** — prove it. A distinguishing fixture, not just a green build.
-6. Report: what is proven, what is inferred, the one caveat that matters.
+6. **`agent-maintainer`** — did this rename a module, move a boundary, or reveal
+   a new failure class? If so, update the affected agents and run
+   `node scripts/verify-agents.cjs`.
+7. Report: what is proven, what is inferred, the one caveat that matters.
 
 Deliver **complete files**, never diffs.
 

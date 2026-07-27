@@ -91,6 +91,12 @@ Two pipeline facts constrain where code may live. Treat them as boundaries:
 When a build failure implies code must move, you decide where — `build-release`
 diagnoses the failure, you own the placement.
 
+## After you move a boundary
+
+A structural change almost always makes some agent file untrue — a path moved, a
+layer gained a responsibility, a route disappeared. Hand to **`agent-maintainer`**
+so the suite still describes the system you just changed.
+
 ## Known architectural debt (state it, do not hide it)
 
 - **No authentication.** The app exposes margin data and can submit listings. It

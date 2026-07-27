@@ -31,6 +31,9 @@ jobs:
           cp env.example.yaml env.yaml
           node scripts/validate-env.cjs
 
+      - name: Agent suite accuracy
+        run: node scripts/verify-agents.cjs
+
       - name: Invariant sweeps
         run: |
           set -e

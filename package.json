@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "local": "bash scripts/local.sh",
     "validate": "node scripts/validate-env.cjs",
-    "setup-secrets": "bash scripts/setup-secrets.sh"
+    "setup-secrets": "bash scripts/setup-secrets.sh",
+    "verify-agents": "node scripts/verify-agents.cjs"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.21.0",

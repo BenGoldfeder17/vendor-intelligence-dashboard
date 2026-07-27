@@ -36,7 +36,7 @@ no such hook existed, and that claim was repeated across several sessions before
 anyone checked. Before describing any function, field or capability:
 
 ```bash
-grep -n "theThing" src/path/to/file.ts
+grep -rn "theThing" src/
 ```
 
 If it is not there, say so. An honest "not built" beats a confident fiction.

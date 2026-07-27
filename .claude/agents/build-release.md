@@ -42,7 +42,7 @@ Every one of these actually happened in this repository.
 | Symptom | Real cause | Fix |
 |---|---|---|
 | `UnhandledSchemeError: Reading from "node:fs"` | A module doing filesystem work is imported by a **client** component. `app.config.ts` is imported for display labels, so it can never touch `fs`. | Move the I/O to a `-r` preload or a server-only module |
-| `Module not found: Can't resolve './config'` | Relative import written as if the file lived in a different directory (`src/lib/x.ts` importing `./config` when it is at `src/lib/spapi/config.ts`) | Fix the relative depth; check `@/` alias instead |
+| `Module not found: Can't resolve './config'` | Relative import written as if the file lived in a different directory (a file in `src/lib/` importing `./config` when the target is at `src/lib/spapi/config.ts`) | Fix the relative depth; check `@/` alias instead |
 | `sh: 1: next: not found` | `node_modules` missing or wiped | `npm ci` (never assume it survived) |
 | Docker build fails on a `COPY` | Copying a path that does not exist — this project has **no `public/`** | Verify every `COPY` source exists before shipping a Dockerfile |
 | Script exits 1 silently under `set -e` | A trailing `[ -n "$X" ] && echo …` returns 1 when false, so `source` returns 1 and kills the caller | End sourced scripts with `true`, or use `if` blocks |

@@ -6,7 +6,7 @@ source of truth.
 
 ```
 .claude/
-  agents/     11 scoped subagents — delegate by domain
+  agents/     12 scoped subagents — delegate by domain
   rules/      always-follow invariants (read these first)
   skills/     workflow procedures
 AGENTS.md     this index
@@ -44,6 +44,7 @@ project has already had — every rule exists because something broke.
 | `build-release` | Build failures, dependencies, Next/webpack config, Dockerfile, CI, packaging, releases |
 | `verification` | Proving a change works: unit checks, invariant sweeps, evidence before claims |
 | `data-integrity` | Column semantics, parser correctness, "is this number actually right?" |
+| `agent-maintainer` | Keeping this suite accurate — after renames, new features, new failure classes, or adding an agent |
 
 **Default flow for a non-trivial change:**
 `architect` (where does this go?) → domain agent (build it) → `build-release`
@@ -53,6 +54,14 @@ data/secrets/writes) → `verification` (prove the behaviour).
 **Anything that fails to compile goes to `build-release` first** — the failure is
 usually a known pipeline issue, not a logic bug. It keeps a catalogue of every
 build failure this repo has actually had.
+
+**If a change makes anything in `.claude/` untrue, finish with `agent-maintainer`.**
+An agent pointing at a renamed file is worse than no agent — it sends work down a
+dead path with false confidence.
+
+```bash
+node scripts/verify-agents.cjs     # every agent claim, checked against the code
+```
 
 ---
 

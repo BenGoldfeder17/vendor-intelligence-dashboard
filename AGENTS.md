@@ -6,7 +6,7 @@ source of truth.
 
 ```
 .claude/
-  agents/     10 scoped subagents — delegate by domain
+  agents/     11 scoped subagents — delegate by domain
   rules/      always-follow invariants (read these first)
   skills/     workflow procedures
 AGENTS.md     this index
@@ -41,12 +41,18 @@ project has already had — every rule exists because something broke.
 | `data-warehouse` | BigQuery layer, snapshots, table/column mapping, the read-only query path |
 | `sync-pipeline` | `sync.ts`, aggregate build, report cache, storage, performance |
 | `frontend-ui` | Components, domain hubs, triage UI, styling, DirectLake-free rendering |
-| `verification` | Proving a change works: builds, unit checks, evidence before claims |
+| `build-release` | Build failures, dependencies, Next/webpack config, Dockerfile, CI, packaging, releases |
+| `verification` | Proving a change works: unit checks, invariant sweeps, evidence before claims |
 | `data-integrity` | Column semantics, parser correctness, "is this number actually right?" |
 
 **Default flow for a non-trivial change:**
-`architect` (where does this go?) → domain agent (build it) → `security-auditor`
-(if it touches data/secrets/writes) → `verification` (prove it) .
+`architect` (where does this go?) → domain agent (build it) → `build-release`
+(does it compile and package?) → `security-auditor` (if it touches
+data/secrets/writes) → `verification` (prove the behaviour).
+
+**Anything that fails to compile goes to `build-release` first** — the failure is
+usually a known pipeline issue, not a logic bug. It keeps a catalogue of every
+build failure this repo has actually had.
 
 ---
 

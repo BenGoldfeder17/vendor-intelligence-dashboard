@@ -28,6 +28,10 @@ npm run build 2>&1 | grep -E "Compiled successfully|Type error|Failed"
 
 Type errors fail the build — a clean build means types are consistent, nothing more.
 
+**If the build fails, stop and hand to `build-release`.** It owns the toolchain
+and keeps a catalogue of every build failure this repo has had; most are known
+pipeline issues rather than logic bugs. Your job starts once it compiles.
+
 ## Invariant sweeps
 
 ```bash

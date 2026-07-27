@@ -76,6 +76,21 @@ If you find yourself computing a number inside `triage.ts`, you have broken it.
 5. Does it duplicate a number that triage also computes? → make triage read it.
 6. Would it break `STORAGE_DRIVER=local`? → reject.
 
+## Build constraints that are architectural
+
+Two pipeline facts constrain where code may live. Treat them as boundaries:
+
+- **`src/config/app.config.ts` is imported by client components** (for display
+  labels), so it can never do filesystem or other server-only work. Runtime file
+  loading happens in a `-r` preload instead. A `node:fs` import there breaks the
+  client bundle.
+- **Cloud SDKs are dynamically imported**, so a deployment loads only the driver
+  it uses. A top-level cloud import would force every deployment to carry all
+  three.
+
+When a build failure implies code must move, you decide where — `build-release`
+diagnoses the failure, you own the placement.
+
 ## Known architectural debt (state it, do not hide it)
 
 - **No authentication.** The app exposes margin data and can submit listings. It

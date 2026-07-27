@@ -82,6 +82,10 @@ Google libraries. Never add a top-level cloud import.
 
 ## Deployment
 
+You own *what* is configured for each platform; **`build-release` owns the image
+and the pipeline that produces it.** Hand over anything touching the Dockerfile,
+CI, or the standalone bundle.
+
 Docker is the universal path; `DEPLOY.md` covers SSH+systemd, AWS
 (App Runner/ECS/EC2), GCP (Cloud Run/GCE), and notes that Azure/Fly/Render/K8s
 take the same Dockerfile. Prefer instance/task roles over static keys.

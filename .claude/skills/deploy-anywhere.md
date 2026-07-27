@@ -1,6 +1,7 @@
 # Deploying to a new platform
 
-Owner: **`config-portability`**; **`security-auditor`** signs off.
+Owner: **`config-portability`** (what to configure), with **`build-release`**
+(the image and pipeline); **`security-auditor`** signs off.
 
 1. Choose storage: `local` only where the filesystem is durable. On Cloud Run /
    App Runner / Lambda / Fly use `s3`/`gcs` or a mounted volume — otherwise state

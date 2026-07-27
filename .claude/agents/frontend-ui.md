@@ -75,8 +75,13 @@ Single stylesheet, scoped prefixes (`rm-` risk monitor, `cc-` command center,
 `mw-` margin watch, `hub-`, `nav-`). CSS variables for colour — never hardcode a
 hex. Status colours are semantic: `--green` ok, `--amber` watch, `--red` action.
 
-## Client/server discipline
+## Client/server discipline — this breaks the build, not just runtime
 
 Components are `"use client"` and fetch from `/api/*`. **Never import a `src/lib`
 analysis module into a component** — that would pull server config, and
 potentially secrets, into the bundle. The API layer is the boundary.
+
+This is enforced by webpack, not just convention: importing anything that reaches
+`node:fs` from a client component fails the build with
+`UnhandledSchemeError: Reading from "node:fs"`. If you hit that, you have crossed
+the boundary — see `build-release` for the diagnosis.

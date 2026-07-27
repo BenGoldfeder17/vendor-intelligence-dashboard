@@ -145,6 +145,12 @@ not run is history gone permanently. Schedule it first.
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE). Publishing your own fork? Read
-[PUBLISHING.md](PUBLISHING.md) first, particularly the sections on IP clearance
-and scanning git history for secrets.
+**[PolyForm Noncommercial License 1.0.0](LICENSE)** — source-available, free for
+noncommercial use.
+
+Free for personal projects, study, academic institutions, nonprofits and
+government. **Commercial use requires a licence** — see [COMMERCIAL.md](COMMERCIAL.md).
+
+Deliberately *not* an OSI-approved open-source licence: it restricts a field of
+endeavour (commercial use), which the open-source definition does not permit.
+The source is public and readable; the commercial grant is not automatic.

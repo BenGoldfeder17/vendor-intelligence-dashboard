@@ -67,30 +67,23 @@ You lose history; you also guarantee nothing leaks from it.
 
 ---
 
-## 3. Choose a licence
+## 3. Licence — already set
 
-`LICENSE` currently contains **MIT** with a `<COPYRIGHT HOLDER>` placeholder.
-Replace it:
+`LICENSE` contains the **PolyForm Noncommercial License 1.0.0**, with the
+copyright holder set. See [COMMERCIAL.md](COMMERCIAL.md) for the commercial path.
 
-```bash
-sed -i 's/<COPYRIGHT HOLDER>/Your Name or Company, Inc./' LICENSE
-```
+This is **source-available, not open source**. It restricts a field of endeavour
+(commercial use), which the OSI definition does not permit. Practical effects:
 
-| Licence | Choose when |
-|---|---|
-| **MIT** (shipped) | Maximum adoption, minimal obligation. The default for tools like this. |
-| **Apache-2.0** | Same permissions plus an explicit patent grant and a NOTICE file. Preferred by companies; slightly more formal. |
-| **BSD-3-Clause** | MIT-equivalent plus a no-endorsement clause. |
-| **AGPL-3.0** | You want anyone running a modified version as a network service to publish their changes. Deters commercial adoption. |
-| **Business Source / proprietary** | You intend to commercialise it. |
+- GitHub's licence detector shows **"Other"**, not a recognised badge.
+- It will not appear in open-source directories or package-manager OSS filters.
+- Some developers will not contribute to non-commercially-licensed projects.
+- Companies with OSS-only policies cannot adopt it without talking to you —
+  which is the point.
 
-If your employer owns the copyright, **they** decide the licence, and the holder
-line must name them.
-
-Swap to Apache-2.0 by replacing `LICENSE` with the official text and adding a
-`NOTICE` file.
-
----
+If you later want maximum adoption instead, MIT or Apache-2.0 are the swaps.
+Note that relicensing only affects future versions: anyone who already obtained
+a copy under earlier terms keeps those rights for that version, permanently.
 
 ## 4. Pre-flight checks
 

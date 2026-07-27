@@ -63,3 +63,15 @@ module directly — the API layer is the boundary.
 API, margin analytics, warehouse, sync, UI, config, verification, data
 integrity). See [AGENTS.md](AGENTS.md). They encode the conventions above, so
 they are worth using even if you work manually.
+
+
+## Licensing of contributions
+
+This project is under the
+[PolyForm Noncommercial License 1.0.0](LICENSE) — source-available, not
+OSI open source.
+
+By submitting a pull request you agree that your contribution is licensed under
+the same terms, and that the copyright holder may also license the combined work
+commercially. If you are not comfortable with that, open an issue to discuss
+before writing code.

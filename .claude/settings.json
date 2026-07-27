@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(env.yaml)",
+      "Read(./env.yaml)",
+      "Read(**/env.yaml)",
+      "Read(env.*.yaml)",
+      "Read(./env.*.yaml)",
+      "Read(.env)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/credentials*)",
+
+      "Edit(env.yaml)",
+      "Edit(./env.yaml)",
+      "Edit(**/env.yaml)",
+      "Edit(.env)",
+      "Edit(./.env)",
+      "Edit(**/.env)",
+
+      "Write(env.yaml)",
+      "Write(./env.yaml)",
+      "Write(**/env.yaml)",
+
+      "Bash(cat env.yaml*)",
+      "Bash(cat ./env.yaml*)",
+      "Bash(cat .env*)",
+      "Bash(head *env.yaml*)",
+      "Bash(tail *env.yaml*)",
+      "Bash(less *env.yaml*)",
+      "Bash(more *env.yaml*)",
+      "Bash(nl *env.yaml*)",
+      "Bash(strings *env.yaml*)",
+      "Bash(xxd *env.yaml*)",
+      "Bash(od *env.yaml*)",
+      "Bash(base64 *env.yaml*)",
+      "Bash(grep *env.yaml*)",
+      "Bash(rg *env.yaml*)",
+      "Bash(sed *env.yaml*)",
+      "Bash(awk *env.yaml*)",
+      "Bash(cp env.yaml*)",
+      "Bash(cp ./env.yaml*)",
+      "Bash(mv env.yaml*)",
+      "Bash(printenv)",
+      "Bash(env)",
+      "Bash(set)"
+    ],
+    "ask": [
+      "Bash(gcloud run deploy*)",
+      "Bash(gcloud *delete*)",
+      "Bash(aws *delete*)",
+      "Bash(bq query*)",
+      "Bash(docker push*)",
+      "Bash(git push*)"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+.next
+.data
+.git
+.claude
+env.yaml
+env.*.yaml
+.env
+*.bak
+**/*.md
+!README.md

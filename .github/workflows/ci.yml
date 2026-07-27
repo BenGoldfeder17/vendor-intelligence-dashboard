@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Validate example config
+        run: |
+          cp env.example.yaml env.yaml
+          node scripts/validate-env.cjs
+
+      - name: Invariant sweeps
+        run: |
+          set -e
+          echo "→ config is the sole env reader"
+          ! grep -rn "process\.env" src/ --include=*.ts --include=*.tsx \
+            | grep -v "config/app.config"
+          echo "→ no double-scaled percentages"
+          ! grep -rn "percent(.*\* 100)" src/
+          echo "→ no committed secrets file"
+          ! test -f env.yaml.orig
+          echo "all invariants hold"

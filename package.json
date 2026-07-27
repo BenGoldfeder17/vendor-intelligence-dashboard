@@ -1,0 +1,29 @@
+{
+  "name": "avc-vendor-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Amazon Vendor Central data aggregation dashboard via Selling Partner API",
+  "scripts": {
+    "dev": "node -r ./scripts/preload-env.cjs ./node_modules/.bin/next dev",
+    "build": "next build",
+    "start": "node -r ./scripts/preload-env.cjs .next/standalone/server.js",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "local": "bash scripts/local.sh",
+    "validate": "node scripts/validate-env.cjs"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.21.0",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@google-cloud/bigquery": "^7.9.1",
+    "@aws-sdk/client-s3": "^3.699.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}

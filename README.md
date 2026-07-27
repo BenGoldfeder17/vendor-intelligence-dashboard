@@ -98,6 +98,14 @@ the same build runs on a laptop, a VM, or serverless.
 `src/config/app.config.ts` — the only file in the codebase that reads the
 environment.
 
+**Secrets never go in it.** Credentials and confidential contract terms are
+injected as real environment variables from a secret manager; real env vars
+override the file. That is deliberate: anything with shell access — an AI coding
+agent included — can read any file its OS user can read, so the guarantee comes
+from the secret not being on the machine, not from blocking the read.
+`npm run validate` fails if a secret has a value in the file.
+See **[SECRETS.md](SECRETS.md)**.
+
 ```bash
 npm run validate                 # catch config errors before a deploy does
 curl -s localhost:3000/api/health

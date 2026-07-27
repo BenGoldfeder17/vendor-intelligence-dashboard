@@ -72,6 +72,39 @@ lines.forEach((line, i) => {
   }
 });
 
+// ── secrets must NOT have values in the file ──
+// An agent (or anyone) with shell access can read any file the OS user can read.
+// Deny-lists stop casual reads, not scripted ones. The guarantee comes from the
+// secret not being on the machine — injected from a secret manager instead.
+const SECRET_KEYS = [
+  "LWA_CLIENT_ID", "LWA_CLIENT_SECRET", "LWA_REFRESH_TOKEN",
+  "SNAPSHOT_TOKEN", "VENDOR_CONTRACTS",
+  "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY",
+];
+
+lines.forEach((line, i) => {
+  const t = line.trim();
+  if (!t || t.startsWith("#")) return;
+  const m = t.match(/^([A-Za-z_][A-Za-z0-9_]*):\s*(.*)$/);
+  if (!m) return;
+  const [, key, rest] = m;
+  if (!SECRET_KEYS.includes(key)) return;
+
+  let v = rest.trim();
+  if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+    v = v.slice(1, -1);
+  }
+  v = v.split(" #")[0].trim();
+  // An empty placeholder is fine and expected. "{}" is an empty contracts map.
+  if (v === "" || v === "{}") return;
+
+  errors.push(
+    `line ${i + 1}: ${key} has a value in this file.\n` +
+    `    Secrets must be injected from a secret manager, not written here.\n` +
+    `    See SECRETS.md. Remove the value and inject it at deploy time.`
+  );
+});
+
 // ── VENDOR_CONTRACTS must be valid JSON ──
 const contractsLine = lines.find((l) => l.trim().startsWith("VENDOR_CONTRACTS:"));
 if (contractsLine) {

@@ -16,7 +16,11 @@ authentication — but it means an unprotected deployment leaks everything.
 
 ## Secrets
 
-- `env.yaml` holds credentials and is **gitignored**. Never commit it.
+**Secrets are never stored in `env.yaml`.** They are injected as real environment
+variables from a secret manager at deploy time — see **[SECRETS.md](SECRETS.md)**
+for the reasoning and setup.
+
+- `env.yaml` holds non-sensitive configuration only, and is gitignored anyway.
 - `env.example.yaml` is the safe, committed template.
 - In production, prefer a secret manager injecting real environment variables.
   Real env vars always take precedence over the file.

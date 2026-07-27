@@ -18,6 +18,39 @@
 //  (Cloud Run/GCE), Azure, Fly.io, Render, or a laptop.
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+// ── 0. Secret classification ─────────────────────────────────────────────────
+//
+// These keys carry credentials or confidential business terms. They must NEVER
+// have a value in env.yaml.
+//
+// The reliable way to keep a secret away from an AI coding agent — or anyone
+// with shell access to the machine — is not to block reads of the file. An agent
+// that can run a script can read any file its OS user can read. The reliable way
+// is for the secret not to be on that machine at all: inject it as a real
+// environment variable from a secret manager at deploy time.
+//
+// Real environment variables always take precedence over env.yaml, so this works
+// with no code change. `npm run validate` fails if any of these has a value in
+// the file.
+
+export const SECRET_KEYS = [
+  "LWA_CLIENT_ID",
+  "LWA_CLIENT_SECRET",
+  "LWA_REFRESH_TOKEN",
+  "SNAPSHOT_TOKEN",
+  // Negotiated contract terms are commercially confidential — arguably the most
+  // sensitive values in the project, even though they are not credentials.
+  "VENDOR_CONTRACTS",
+  "AWS_ACCESS_KEY_ID",
+  "AWS_SECRET_ACCESS_KEY",
+] as const;
+
+/** True when a key must be injected rather than written to env.yaml. */
+export function isSecretKey(key: string): boolean {
+  return (SECRET_KEYS as readonly string[]).includes(key);
+}
+
 // ── helpers ──────────────────────────────────────────────────────────────────
 
 function str(name: string, fallback = ""): string {
